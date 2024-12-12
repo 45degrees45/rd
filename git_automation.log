@@ -94,3 +94,7 @@ error: failed to push some refs to 'https://github.com/45degrees45/rd.git'
 2024-12-12 18:12:08,075 - INFO - Success: Committing
 2024-12-12 18:12:09,406 - ERROR - Security violation detected. Please check .gitignore and remove sensitive files.
 2024-12-12 18:12:09,406 - ERROR - Git automation failed: Command '['git', 'push', 'origin', 'main']' returned non-zero exit status 1.
+2024-12-12 18:15:01,798 - INFO - Success: Getting current branch
+2024-12-12 18:15:01,800 - INFO - Success: Setting credentials
+2024-12-12 18:15:01,811 - INFO - Success: Checking git status
+2024-12-12 18:15:02,519 - INFO - Success: Pulling latest changes
