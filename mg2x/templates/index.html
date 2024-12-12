@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Image to Text Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        .upload-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .file-input {
+            margin: 10px 0;
+        }
+        
+        select {
+            padding: 8px;
+            margin: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 100px;
+            white-space: pre-wrap;
+            display: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        #preview {
+            max-width: 100%;
+            max-height: 300px;
+            margin: 10px 0;
+            display: none;
+        }
+        
+        .confidence-meter {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enhanced Image to Text Converter</h1>
+        
+        <div class="upload-section">
+            <div class="file-input">
+                <input type="file" id="imageInput" accept=".png,.jpg,.jpeg,.gif,.bmp,.tiff">
+            </div>
+            
+            <img id="preview" alt="Image preview">
+            
+            <div>
+                <select id="documentType">
+                    <option value="general">General Document</option>
+                    <option value="receipt">Receipt</option>
+                    <option value="prescription">Prescription</option>
+                </select>
+                
+                <select id="languageSelect">
+                    <option value="eng">English</option>
+                    <option value="fra">French</option>
+                    <option value="deu">German</option>
+                    <option value="spa">Spanish</option>
+                    <option value="ita">Italian</option>
+                </select>
+            </div>
+            
+            <button onclick="convertImage()" id="convertBtn" disabled>Convert to Text</button>
+        </div>
+        
+        <div class="loading" id="loading">
+            Converting... Please wait...
+        </div>
+        
+        <div class="confidence-meter" id="confidenceMeter">
+            <div>Confidence Score: <span id="confidenceScore">0</span>%</div>
+        </div>
+        
+        <div class="stats" id="stats">
+            <div>Words Detected: <span id="wordCount">0</span></div>
+        </div>
+        
+        <pre id="result"></pre>
+    </div>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const preview = document.getElementById('preview');
+        const convertBtn = document.getElementById('convertBtn');
+        const loading = document.getElementById('loading');
+        const result = document.getElementById('result');
+        const confidenceMeter = document.getElementById('confidenceMeter');
+        const confidenceScore = document.getElementById('confidenceScore');
+        const stats = document.getElementById('stats');
+        const wordCount = document.getElementById('wordCount');
+
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                convertBtn.disabled = false;
+                preview.style.display = 'block';
+                preview.src = URL.createObjectURL(file);
+            } else {
+                convertBtn.disabled = true;
+                preview.style.display = 'none';
+            }
+            result.style.display = 'none';
+            confidenceMeter.style.display = 'none';
+            stats.style.display = 'none';
+        });
+
+        async function convertImage() {
+            const file = imageInput.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('document_type', document.getElementById('documentType').value);
+            formData.append('language', document.getElementById('languageSelect').value);
+
+            loading.style.display = 'block';
+            convertBtn.disabled = true;
+            result.style.display = 'none';
+            confidenceMeter.style.display = 'none';
+            stats.style.display = 'none';
+
+            try {
+                const response = await fetch('/convert', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                
+                if (data.error) {
+                    result.textContent = 'Error: ' + data.error;
+                } else {
+                    result.textContent = data.text;
+                    confidenceScore.textContent = data.confidence.toFixed(1);
+                    wordCount.textContent = data.words;
+                    
+                    confidenceMeter.style.display = 'block';
+                    stats.style.display = 'flex';
+                }
+                
+                result.style.display = 'block';
+            } catch (error) {
+                result.textContent = 'Error converting image: ' + error.message;
+                result.style.display = 'block';
+            } finally {
+                loading.style.display = 'none';
+                convertBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

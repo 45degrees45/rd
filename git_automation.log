@@ -1,0 +1,96 @@
+2024-12-12 17:50:58,817 - INFO - Success: Getting current branch
+2024-12-12 17:50:58,821 - INFO - Success: Setting credentials
+2024-12-12 17:50:58,836 - INFO - Success: Checking git status
+2024-12-12 17:51:01,229 - INFO - Success: Pulling latest changes
+2024-12-12 17:51:01,241 - INFO - Success: Staging changes
+2024-12-12 17:51:01,253 - INFO - Success: Committing
+2024-12-12 17:51:03,831 - WARNING - Attempt 1 failed for Pushing changes: remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:             
+remote:       —— OpenAI API Key ————————————————————————————————————        
+remote:        locations:        
+remote:          - commit: 2447f1db90b8dddd26c703a5bb987efe49c9ddba        
+remote:            path: PydanticAI/.env:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/45degrees45/rd/security/secret-scanning/unblock-secret/2q7GBNctZoRziobcAG9vSQiGWd0        
+remote:             
+remote: 
+remote: 
+To https://github.com/45degrees45/rd.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/45degrees45/rd.git'
+
+2024-12-12 17:51:07,755 - WARNING - Attempt 2 failed for Pushing changes: remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:             
+remote:       —— OpenAI API Key ————————————————————————————————————        
+remote:        locations:        
+remote:          - commit: 2447f1db90b8dddd26c703a5bb987efe49c9ddba        
+remote:            path: PydanticAI/.env:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/45degrees45/rd/security/secret-scanning/unblock-secret/2q7GBNctZoRziobcAG9vSQiGWd0        
+remote:             
+remote: 
+remote: 
+To https://github.com/45degrees45/rd.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/45degrees45/rd.git'
+
+2024-12-12 17:51:11,463 - ERROR - Error in Pushing changes: remote: error: GH013: Repository rule violations found for refs/heads/main.        
+remote: 
+remote: - GITHUB PUSH PROTECTION        
+remote:   —————————————————————————————————————————        
+remote:     Resolve the following violations before pushing again        
+remote: 
+remote:     - Push cannot contain secrets        
+remote: 
+remote:             
+remote:      (?) Learn how to resolve a blocked push        
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push        
+remote:             
+remote:             
+remote:       —— OpenAI API Key ————————————————————————————————————        
+remote:        locations:        
+remote:          - commit: 2447f1db90b8dddd26c703a5bb987efe49c9ddba        
+remote:            path: PydanticAI/.env:1        
+remote:             
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.        
+remote:        https://github.com/45degrees45/rd/security/secret-scanning/unblock-secret/2q7GBNctZoRziobcAG9vSQiGWd0        
+remote:             
+remote: 
+remote: 
+To https://github.com/45degrees45/rd.git
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/45degrees45/rd.git'
+
+2024-12-12 17:51:11,463 - ERROR - Git automation failed: Command '['git', 'push', 'origin', 'main']' returned non-zero exit status 1.
+2024-12-12 18:12:07,286 - INFO - Success: Getting current branch
+2024-12-12 18:12:07,288 - INFO - Success: Setting credentials
+2024-12-12 18:12:07,305 - INFO - Success: Checking git status
+2024-12-12 18:12:08,052 - INFO - Success: Pulling latest changes
+2024-12-12 18:12:08,066 - INFO - Success: Staging changes
+2024-12-12 18:12:08,075 - INFO - Success: Committing
+2024-12-12 18:12:09,406 - ERROR - Security violation detected. Please check .gitignore and remove sensitive files.
+2024-12-12 18:12:09,406 - ERROR - Git automation failed: Command '['git', 'push', 'origin', 'main']' returned non-zero exit status 1.
