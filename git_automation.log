@@ -138,3 +138,11 @@ error: failed to push some refs to 'https://github.com/45degrees45/rd.git'
 2024-12-16 10:08:06,922 - INFO - Success: Setting credentials
 2024-12-16 10:08:06,958 - INFO - Success: Checking git status
 2024-12-16 10:08:07,644 - INFO - Success: Pulling latest changes
+2024-12-16 10:08:07,662 - INFO - Success: Staging changes
+2024-12-16 10:08:07,675 - INFO - Success: Committing
+2024-12-16 10:08:08,994 - INFO - Success: Pushing changes
+2024-12-16 10:08:08,994 - INFO - Successfully pushed changes to repository
+2024-12-16 21:16:57,832 - INFO - Success: Getting current branch
+2024-12-16 21:16:57,834 - INFO - Success: Setting credentials
+2024-12-16 21:16:57,870 - INFO - Success: Checking git status
+2024-12-16 21:16:58,831 - INFO - Success: Pulling latest changes
