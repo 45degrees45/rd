@@ -1,6 +1,10 @@
-
 # src/main.py
+# Version: 2.0
+# Date: 2024-12-17
+# Description: Main entry point for crypto analysis system with enhanced logging
+
 import logging
+from src.agents.market_analyzer import create_market_analysis_chain, AgentState
 
 # Configure logging
 logging.basicConfig(
@@ -13,18 +17,20 @@ def main():
     """Main function to run the crypto analysis system"""
     logger.info("Starting crypto analysis system")
     
-    # Initialize the analysis chain
-    chain = create_market_analysis_chain()
-    
-    # Initial state
-    initial_state = AgentState(
-        messages=[],
-        current_crypto="BTC-USD",
-        price_data={},
-        analysis=""
-    )
-    
     try:
+        # Initialize the analysis chain
+        logger.debug("Creating market analysis chain")
+        chain = create_market_analysis_chain()
+        
+        # Initial state
+        logger.debug("Setting up initial state")
+        initial_state = AgentState(
+            messages=[],
+            current_crypto="BTC-USD",
+            price_data={},
+            analysis=""
+        )
+        
         # Run analysis
         logger.info("Running market analysis")
         result = chain.invoke(initial_state)
@@ -33,9 +39,10 @@ def main():
         print("-" * 50)
         print(result['analysis'])
         logger.info("Analysis completed and results displayed")
+        
     except Exception as e:
-        logger.error(f"Error running analysis: {e}")
-        print(f"Error running analysis: {e}")
+        logger.error(f"Error running analysis: {str(e)}", exc_info=True)
+        print(f"Error running analysis: {str(e)}")
 
 if __name__ == "__main__":
     main()
